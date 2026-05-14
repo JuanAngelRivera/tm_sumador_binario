@@ -13,7 +13,7 @@ class tm_length_verification(turing_machine):
         return self.q0(self.string_input, self.position)
 
     def q0(self, string_input : list, position : int):
-        self.print('q0', string_input, position)
+        # self.print('q0', string_input, position)
         if position >= len(string_input):
             return False
     
@@ -25,7 +25,7 @@ class tm_length_verification(turing_machine):
             return False
 
     def q1(self, string_input : list, position : int):
-        self.print('q1', string_input, position)
+        # self.print('q1', string_input, position)
         if position >= len(string_input):
             return False
         
@@ -38,7 +38,7 @@ class tm_length_verification(turing_machine):
             return False
     
     def q2(self, string_input : list, position : int):
-        self.print('q2', string_input, position)
+        # self.print('q2', string_input, position)
         if position >= len(string_input):
             return False
         
@@ -52,7 +52,7 @@ class tm_length_verification(turing_machine):
             return False
         
     def q3(self, string_input : list, position : int):
-        self.print('q3', string_input, position)
+        # self.print('q3', string_input, position)
         if position >= len(string_input):
             return False
         
@@ -67,7 +67,7 @@ class tm_length_verification(turing_machine):
             return False
     
     def q4(self, string_input : list, position : int):
-        self.print('q4', string_input, position)
+        # self.print('q4', string_input, position)
         if position >= len(string_input):
             return False
         char = string_input[position]
@@ -80,7 +80,7 @@ class tm_length_verification(turing_machine):
             return False
 
     def q5(self, string_input : list, position : int):
-        self.print('q5', string_input, position)
+        # self.print('q5', string_input, position)
         if position >= len(string_input):
             return False
         
@@ -97,7 +97,7 @@ class tm_length_verification(turing_machine):
             return False
         
     def q6(self, string_input : list, position : int):
-        self.print('q6', string_input, position)
+        # self.print('q6', string_input, position)
         if position >= len(string_input):
             return False
         

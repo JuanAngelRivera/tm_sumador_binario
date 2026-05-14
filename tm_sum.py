@@ -9,7 +9,7 @@ class tm_sum(turing_machine):
         self.position = position
 
     def print(self, state : str, string_input : list, position : int):
-        print(f"{state}: {string_input}\n      " + f" " * (5 + len(state)) * position + '↑')
+        print(f"{state}: {string_input}\n" + ("      " if len(state) == 2 else "       ") + f" " * 5 * position + '↑')
 
     def recognize(self):
         return self.q0(self.string_input, self.position)
@@ -67,7 +67,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == '0' or char == '1' or char == '+':
+        if char == '0' or char == '1' or char == '+' or char == 'x' or char == 'y' or char == 'a' or char == 'b':
             return self.q3(string_input, position + 1)
         elif char == '=':
             return self.q4(string_input, position - 1)
@@ -99,7 +99,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == 'x' or char == 'y':
+        if char == 'a' or char == 'b':
             return self.q5(string_input, position + 1)
         elif char == '=':
             return self.q6(string_input, position + 1)
@@ -142,7 +142,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
         
-        if char == 'x' or char == 'y':
+        if char == 'a' or char == 'b':
             return self.q8(string_input, position + 1)
         elif char == '=':
             return self.q9(string_input, position + 1)
@@ -169,7 +169,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == '0' or char == '1' or char == '+':
+        if char == '0' or char == '1' or char == '+' or char == 'x' or char == 'y' or char == 'a' or char == 'b':
             return self.q10(string_input, position + 1)
         elif char == '=':
             return self.q11(string_input, position - 1)
@@ -190,7 +190,7 @@ class tm_sum(turing_machine):
             return self.q12(string_input, position + 1)
         elif char == '1':
             string_input[position] = 'b'
-            return self.q15(string_input, position + 1)
+            return self.q14(string_input, position + 1)
         else:
             return None
         
@@ -201,7 +201,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == 'x' or char == 'y':
+        if char == 'a' or char == 'b':
             return self.q12(string_input, position + 1)
         elif char == '=':
             return self.q13(string_input, position + 1)
@@ -262,12 +262,12 @@ class tm_sum(turing_machine):
         if char == '0' or char == '1' or char == 'a' or char == 'b' or char == '=' or char == '+':
             return self.q16(string_input, position - 1)
         elif char == 'x' or char == 'y':
-            return self.q18(string_input, position + 1)
+            return self.q17(string_input, position + 1)
         else:
             return None
         
     def q17(self, string_input : list, position : int):
-        self.print('q0', string_input, position)
+        self.print('q17', string_input, position)
         if position >= len(string_input):
             return None
     
@@ -294,7 +294,7 @@ class tm_sum(turing_machine):
             return self.q19(string_input, position + 1)
         elif char == '1':
             string_input[position] = 'y'
-            return self.q22(string_input, position + 1)
+            return self.q21(string_input, position + 1)
         elif char == ' ':
             return self.q25(string_input, position + 1)
         else:
@@ -339,7 +339,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == '0' or char == '1':
+        if char == 'x' or char == 'y' or char == '+' or char == '1' or char == '0' or char == 'a' or char =='b':
             return self.q21(string_input, position + 1)
         elif char == '=':
             return self.q22(string_input, position - 1)
@@ -371,7 +371,7 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == 'x' or char == 'y':
+        if char == 'a' or char == 'b':
             return self.q23(string_input, position + 1)
         elif char == '=':
             return self.q24(string_input, position + 1)
@@ -400,9 +400,19 @@ class tm_sum(turing_machine):
     
         char = string_input[position]
 
-        if char == ' ':
+        if char == 'x' or char == 'a':
+            string_input[position] = '0'
+            return self.q25(string_input, position + 1)
+        elif char == 'y' or char == 'b':
             string_input[position] = '1'
-            return self.q26(string_input, position + 1)
+            return self.q25(string_input, position + 1)
+        elif char == '+' or char == '=':
+            return self.q25(string_input, position + 1)
+        elif char == '0' or char == '1':
+            return self.q25(string_input, position + 1)
+        elif char == ' ':
+            string_input[position] = '1'
+            return string_input
         else:
             return None
         
@@ -420,6 +430,8 @@ class tm_sum(turing_machine):
             string_input[position] = '1'
             return self.q26(string_input, position + 1)
         elif char == '+' or char == '=':
+            return self.q26(string_input, position + 1)
+        elif char == '0' or char == '1':
             return self.q26(string_input, position + 1)
         elif char == ' ':
             return string_input
