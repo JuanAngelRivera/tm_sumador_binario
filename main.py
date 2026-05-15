@@ -1,6 +1,8 @@
-import os
 from tm_length_verification import tm_length_verification
 from tm_sum import tm_sum
+import sys
+
+sys.setrecursionlimit(100000)
 
 while True:
     original_input = input('Introduce la suma binaria {1, 0} de la forma \'...+...=\'\n')
@@ -19,7 +21,7 @@ while True:
                 for char in result:
                     final = final + char
                 print(f"Resultado:{final}\n El resultado se lee de derecha a izquierda")
-                file.write("".join(original_input) + '\n')
+                file.write("".join(final) + '\n')
         else:
             with open('rejeted.data', 'a') as file:
                 file.write("".join(original_input) + '\n')
